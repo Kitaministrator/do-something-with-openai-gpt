@@ -1,7 +1,10 @@
 package main
 
 import (
-	"log"
+	"context"
+	"fmt"
+
+	openai "github.com/sashabaranov/go-openai"
 )
 
 func main() {
@@ -10,6 +13,26 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	// printout all key-value pairs in ClientConfig
-	log.Println(ClientCfg.BaseURL)
+
+	client := openai.NewClientWithConfig(ClientCfg)
+	resp, err := client.CreateChatCompletion(
+		context.Background(),
+		openai.ChatCompletionRequest{
+			Model: openai.GPT3Dot5Turbo,
+			Messages: []openai.ChatCompletionMessage{
+				{
+					Role:    openai.ChatMessageRoleUser,
+					Content: "Hello!",
+				},
+			},
+		},
+	)
+
+	if err != nil {
+		fmt.Printf("ChatCompletion error: %v\n", err)
+		return
+	}
+
+	fmt.Println(resp.Choices[0].Message.Content)
+
 }

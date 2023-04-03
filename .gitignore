@@ -11,7 +11,7 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Custom configs which my contain sensitive information
+# Custom configs which might contain sensitive information
 config.json
 
 # Dependency directories (remove the comment below to include it)

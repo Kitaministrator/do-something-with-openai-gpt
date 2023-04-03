@@ -56,6 +56,9 @@ func loadConfigFromEnv() {
 	} else {
 		cfg.EmptyMessagesLimit = uint(limit)
 	}
+
+	setValue()
+
 }
 
 func setValue() {
