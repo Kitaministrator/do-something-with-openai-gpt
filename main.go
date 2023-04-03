@@ -1,31 +1,15 @@
 package main
 
 import (
-	"context"
-	"fmt"
-
-	openai "github.com/sashabaranov/go-openai"
+	"log"
 )
 
 func main() {
-	client := openai.NewClient("your token")
-	resp, err := client.CreateChatCompletion(
-		context.Background(),
-		openai.ChatCompletionRequest{
-			Model: openai.GPT3Dot5Turbo,
-			Messages: []openai.ChatCompletionMessage{
-				{
-					Role:    openai.ChatMessageRoleUser,
-					Content: "Hello!",
-				},
-			},
-		},
-	)
-
+	// Load config from file or env
+	err := loadConfig()
 	if err != nil {
-		fmt.Printf("ChatCompletion error: %v\n", err)
-		return
+		panic(err)
 	}
-
-	fmt.Println(resp.Choices[0].Message.Content)
+	// printout all key-value pairs in ClientConfig
+	log.Println(ClientCfg.BaseURL)
 }
