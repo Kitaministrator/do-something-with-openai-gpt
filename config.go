@@ -74,7 +74,7 @@ func setValue() {
 /*
 	{
 		"authtoken": "your-token",
-		"baseurl": "your-private-domain-api",
+		"baseurl": "https://your.private-api.com/v1",
 		"orgid": "your-organization-id",
 		"emptymessageslimit": 300
 	}
